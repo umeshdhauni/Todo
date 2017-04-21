@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="mytodoApp">
+  <head>
+    <title>Angular</title>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+      <script src="lib/js/jquery.min.js"></script>
+      <script src="lib/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="lib/css/font-awesome.min.css">
+    <script type="text/javascript" src="lib/js/angular.min.js"></script>
+    <script type="text/javascript" src="lib/js/ngStorage.min.js"></script>
+    <script type="text/javascript" src="Angular.js"></script>
+      <link rel="stylesheet" type="text/css" href="Angular.css">
+  </head>
+  <body ng-controller="mytodoController">
+    <div class="container">
+      <header class="app-header">
+        <h1 class="app-title">{{ appTitle }}</h1>
+        <h1 class="app-headline">{{ appHeadline }}</h1>
+      </header>
+      <section class="app-body">
+      <section class="archive-control">
+        <span>{{remaining()}} of {{todos.length}} Remaining</span>
+        <p>[ <a href="" ng-click="archive()">Remove Completed Items</a> ]</p>
+      </section>
+
+      <ul class="unstyled">
+        <li ng-repeat="todo in todos track by $index">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+          <span class="delete-task" ng-click="deleteTask($index)"> X </span>
+        </li>
+      </ul>
+      <ul class="completetodo">
+        <li ng-repeat="todo in completetodo track by $index">
+          <span>{{todo.text}}</span>
+        </li>
+      </ul>
+      <form  class="todo-form" ng-submit="addTo()">
+        <input type="text" placeholder="Enter new ToDo item" ng-model="todoText" />
+        <br />
+        <input type="submit"  value="Add Task" />
+      </form>
+        <input type="button" value="Completed Task" ng-click="completedTask()">
+        <input type="button" value="All Task" ng-click="allTask()">
+      </section>
+    </div>
+  </body>
+</html>
